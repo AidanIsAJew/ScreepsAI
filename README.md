@@ -1,6 +1,6 @@
 # ScreepsAI
 
-<h3><Creeps Abilities:</h3>
+<h3>Creeps Abilities:</h3>
 
 <p>
   <un>
