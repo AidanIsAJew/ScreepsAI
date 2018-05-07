@@ -12,3 +12,9 @@
     <li>Repair structures</li>
   </un>
 </p>
+
+<h3>To do:</h3>
+<un>
+  <li>create scripts for parts of scripts that are called often</li>
+  <li>create bigger creeps</li>
+</un>
