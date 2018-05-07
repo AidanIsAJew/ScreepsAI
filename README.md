@@ -8,5 +8,7 @@
     <li>Trasnport energy</li>
     <li>Transfer energy to the spawn</li>
     <li>Transfer energy to the room controller</li>
+    <li>Build construction sites</li>
+    <li>Repair structures</li>
   </un>
 </p>
