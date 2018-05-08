@@ -2,6 +2,7 @@ var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 var roleRepairer = require('role.repairer');
+var config = require('config');
 
 module.exports.loop = function () {
 
@@ -31,13 +32,13 @@ module.exports.loop = function () {
     }
 
     // set min. number of harvesters
-    var minumNumberOfHarvesters = 4;
+    var minumNumberOfHarvesters = config.harvester;
     // set min. number of upgraders
-    var minumNumberOfUpgraders = 4;
+    var minumNumberOfUpgraders = config.upgrader;
     // set min. number of builders
-    var minumNumberOfBuilders = 5;
+    var minumNumberOfBuilders = config.builder;
     // set min. number of repairers
-    var minumNumberOfRepairers = 2;
+    var minumNumberOfRepairers = config.repairer;
 
     // get number of harvesters
     var numberOfHarvesters = _.sum(Game.creeps, (c) => c.memory.role == 'harvester');
@@ -104,7 +105,7 @@ module.exports.loop = function () {
         if (!(name < 0)) {
             console.log("Spawned new repairer creep: " + name );
             numberOfRepairers++;
-            console.log("Total repairers:" + numberOfRepairers + "/" + min);
+            console.log("Total repairers:" + numberOfRepairers + "/" + minumNumberOfRepairers);
         }
     }
 };
