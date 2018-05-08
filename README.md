@@ -17,9 +17,11 @@
 <un>
   <li>create scripts for parts of scripts that are called often</li>
   <li>create bigger creeps</li>
-  <li>harvest other resources</li>
-  <li>defensive creeps</li>
+  <li>harvest resources other than energy</li>
+  <li>defensive creeps spawning and AI</li>
   <li>multi room support</li>
-  <li>config</li>
+  <li>tower support</li>
+  <li>mid-late game structure support</li>
+  <li>basic config</li>
   <li>basic documentation</li>
 </un>
