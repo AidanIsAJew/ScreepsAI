@@ -35,7 +35,7 @@ module.exports.loop = function () {
     // set min. number of upgraders
     var minumNumberOfUpgraders = 4;
     // set min. number of builders
-    var minumNumberOfBuilders = 3;
+    var minumNumberOfBuilders = 5;
     // set min. number of repairers
     var minumNumberOfRepairers = 2;
 
@@ -48,6 +48,7 @@ module.exports.loop = function () {
     // get number of repairers
     var numberOfRepairers = _.sum(Game.creeps, (c) => c.memory.role == 'repairer');
 
+    /*
     // print numbers of harvesters
     console.log('Harvesters:' + numberOfHarvesters);
     // print number of upgraders
@@ -56,37 +57,54 @@ module.exports.loop = function () {
     console.log('Builders:' + numberOfBuilders);
     // print number of repairers
     console.log('Repairers:' + numberOfRepairers);
+    */
 
     // compare number of harvesters to min.
     if (numberOfHarvesters < minumNumberOfHarvesters) {
         // spawn harvester and store it in var name
-        var name = Game.spawns.spawn1.createCreep([WORK, WORK, CARRY, MOVE], undefined,
+        var name = Game.spawns.Spawn1.createCreep([WORK, WORK, CARRY, MOVE], undefined,
             {role: 'harvester', working: false});
         // if spawned, print name of new harvester
-        if (!(name < 0)) console.log("Spawned new harvester creep: " + name);
+        if (!(name < 0)) {
+            console.log("Spawned new harvester creep: " + name);
+            numberOfHarvesters++;
+            console.log("Total harvesters:" + numberOfHarvesters + "/" + minumNumberOfHarvesters);
+        }
     }
     // compare the number of upgraders to min.
     else if (numberOfUpgraders < minumNumberOfUpgraders) {
         // spawn upgrader and store it in var name
-        var name = Game.spawns.spawn1.createCreep([WORK, WORK, CARRY, MOVE], undefined,
+        var name = Game.spawns.Spawn1.createCreep([WORK, WORK, CARRY, MOVE], undefined,
             {role: 'upgrader', working: false});
         // if spawned, print name of new upgrader
-        if (!(name < 0)) console.log("Spawned new upgrader creep: " + name);
+        if (!(name < 0)) {
+            console.log("Spawned new upgrader creep: " + name);
+            numberOfUpgraders++;
+            console.log("Total upgraders:" + numberOfUpgraders + "/" + minumNumberOfUpgraders);
+        }
     }
     // compare the number of builders to the min.
     else if (numberOfBuilders < minumNumberOfBuilders) {
         // spawn builder and store it in var name
-        var name = Game.spawns.spawn1.createCreep([WORK, CARRY, MOVE, MOVE], undefined,
+        var name = Game.spawns.Spawn1.createCreep([WORK, CARRY, MOVE, MOVE], undefined,
             {role: 'builder', working: false});
         // if spawned, print name of new builder
-        if (!(name < 0)) console.log("Spawned new builder creep: " + name);
+        if (!(name < 0)) {
+            console.log("Spawned new builder creep: " + name);
+            numberOfBuilders++;
+            console.log("Total builders:" + numberOfBuilders + "/" + minumNumberOfBuilders);
+        }
     }
     // compare the number of repairers to the min.
    else if (numberOfRepairers < minumNumberOfRepairers) {
         // spawn repairer and store it in var name
-            var name = Game.spawns.spawn1.createCreep([WORK, CARRY, MOVE, MOVE], undefined,
+            var name = Game.spawns.Spawn1.createCreep([WORK, CARRY, MOVE, MOVE], undefined,
                 {role: 'repairer', working: false});
         // if spawned, print name of new repairer
-        if (!(name < 0)) console.log("Spawned new repairer: " + name);
+        if (!(name < 0)) {
+            console.log("Spawned new repairer creep: " + name );
+            numberOfRepairers++;
+            console.log("Total repairers:" + numberOfRepairers + "/" + min);
+        }
     }
 };
