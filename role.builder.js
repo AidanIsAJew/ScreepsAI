@@ -1,11 +1,18 @@
-var roleRepaierer = require('role.repairer');
+/*
+This script will make the builder type creeps harvest energy then repair the weakest structure.
+If there is no structure to repair then it will assume the duties of a repairer(see role.repairer.js).
+ */
+
+var roleRepairer = require('role.repairer');
+var functionHarvestSource = require('function.harvestSource');
+
 module.exports = {
     run: function (creep) {
 
         // find the construction sites in a room
         var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
-        // sort the construction sites based on which is the lowest hp
-        targets.sort((a,b) => a.hits - b.hits);
+        // sort the construction sites based on which is the highest hp
+         targets.sort((a,b) => b.hits - a.hits);
 
         // if the creep is building and has no energy set working to false
         if (creep.memory.working == true && creep.carry.energy == 0) {
@@ -23,15 +30,12 @@ module.exports = {
             }
             // if there is nothing else to build become a repairer
             else {
-                roleRepaierer.run(creep);
+                roleRepairer.run(creep);
             }
         }
         // if the creep is not repairing then they are harvesting energy
         else {
-            var source = creep.pos.findClosestByPath(FIND_SOURCES);
-            if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(source);
-            }
+            functionHarvestSource.run(creep);
         }
     }
 };

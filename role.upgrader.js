@@ -2,6 +2,9 @@
 This script will make the upgrader type creeps--or any creep acting as an upgrader(see role.repairer.js)--
 harvest energy then transfer it to the room controller.
  */
+
+var functionHarvestSource = require('function.harvestSource');
+
 module.exports = {
     run: function (creep) {
 
@@ -22,10 +25,7 @@ module.exports = {
         }
         // if the creep is not upgrading then they are harvesting energy
         else {
-            var source = creep.pos.findClosestByPath(FIND_SOURCES);
-            if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(source);
-            }
+            functionHarvestSource.run(creep);
         }
     }
 };

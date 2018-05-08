@@ -1,9 +1,10 @@
 /*
-This Script will make the repairer type creeps--or any creep acting as a repairer(see role.builder.js)--
+This script will make the repairer type creeps--or any creep acting as a repairer(see role.builder.js)--
 harvest energy then repair the weakest structure. If there is no structure to repair then it will assume the
 duties of an upgrader(see role.upgrader.js).
  */
 
+var functionHarvestSource = require('function.harvestSource');
 var roleUpgrader = require('role.upgrader');
 
 module.exports = {
@@ -39,10 +40,7 @@ module.exports = {
         }
         // if the creep is not repairing then they are harvesting energy
         else {
-            var source = creep.pos.findClosestByPath(FIND_SOURCES);
-            if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(source);
-            }
+            functionHarvestSource.run(creep);
         }
     }
 };
