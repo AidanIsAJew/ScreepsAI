@@ -17,4 +17,9 @@
 <un>
   <li>create scripts for parts of scripts that are called often</li>
   <li>create bigger creeps</li>
+  <li>harvest other resources</li>
+  <li>defensive creeps</li>
+  <li>multi room support</li>
+  <li>config</li>
+  <li>basic documentation</li>
 </un>
