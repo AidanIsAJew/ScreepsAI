@@ -13,7 +13,7 @@ module.exports = {
 
         // find the structures that needs repair
         var targets = creep.room.find(FIND_STRUCTURES, {
-            filter: object => object.hits < object.hitsMax && object.structureType != STRUCTURE_WALL
+            filter: object => object.hits < object.hitsMax && object.structureType == STRUCTURE_WALL
         });
         // sort the structures by lowest hit points
         targets.sort((a,b) => a.hits - b.hits);
@@ -38,7 +38,7 @@ module.exports = {
                 if(targets.length > 0) {
                     if(creep.repair(targets[0]) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(targets[0]);
-                        creep.say('✔🔧');
+                        creep.say('✔🝙');
                     }
                 }
                 // if there is nothing else to repair, become a upgrader
@@ -48,7 +48,7 @@ module.exports = {
             }
             // if the creep is not repairing then they are harvesting energy
             else {
-                creep.say('❌🔧');
+                creep.say('❌🝙');
                 functionHarvestSource.run(creep);
             }
         }

@@ -2,6 +2,7 @@ var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 var roleRepairer = require('role.repairer');
+var roleWallRepairer = require('role.WallRepairer');
 var config = require('config');
 
 module.exports.loop = function () {
@@ -29,6 +30,9 @@ module.exports.loop = function () {
         else if (creep.memory.role == 'repairer') {
             roleRepairer.run(creep);
         }
+        else if (creep.memory.role == 'wallrepairer')  {
+            roleWallRepairer.run(creep);
+        }
     }
 
     // set min. number of harvesters
@@ -39,6 +43,8 @@ module.exports.loop = function () {
     var minumNumberOfBuilders = config.builder;
     // set min. number of repairers
     var minumNumberOfRepairers = config.repairer;
+    // set min. number of wall repairers
+    var minumNumberOfWallRepairers = config.wallrepairer;
 
     // get number of harvesters
     var numberOfHarvesters = _.sum(Game.creeps, (c) => c.memory.role == 'harvester');
@@ -48,6 +54,8 @@ module.exports.loop = function () {
     var numberOfBuilders = _.sum(Game.creeps, (c) => c.memory.role == 'builder');
     // get number of repairers
     var numberOfRepairers = _.sum(Game.creeps, (c) => c.memory.role == 'repairer');
+    // get number of wall repairers
+    var numberOfWallRepairers = _.sum(Game.creeps, (c) => c.memory.role == 'wallrepairer');
 
     /*
     // print numbers of harvesters
@@ -106,6 +114,18 @@ module.exports.loop = function () {
             console.log("Spawned new repairer creep: " + name );
             numberOfRepairers++;
             console.log("Total repairers:" + numberOfRepairers + "/" + minumNumberOfRepairers);
+        }
+    }
+    // compare the number of wall repairers to the min.
+    else if (numberOfWallRepairers < minumNumberOfWallRepairers) {
+        // spawn wall repairer and store it in var name
+        var name = Game.spawns.Spawn1.createCreep([WORK, CARRY, MOVE, MOVE], undefined,
+            {role: 'wallrepairer', working: false});
+        // if spawned, print name of new wall repairer
+        if (!(name < 0)) {
+            console.log("Spawned new wall repairer creep: " + name );
+            numberOfWallRepairers++;
+            console.log("Total wall repairers:" + numberOfWallRepairers + "/" + minumNumberOfWallRepairers);
         }
     }
 };

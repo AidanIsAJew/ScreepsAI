@@ -3,5 +3,6 @@ module.exports = {
     upgrader: 4,
     builder : 5,
     repairer : 2,
-    spawn: "Spawn1"
+    wallrepairer: 3,
+    spawn: 'Spawn1'
 };
